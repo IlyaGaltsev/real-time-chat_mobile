@@ -1,18 +1,14 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import {
   Text,
   View,
-  TextInput,
-  Image,
   StyleSheet,
   Button
 } from "react-native"
-import { Context } from "../App"
-import { signInWithEmailAndPassword } from "firebase/auth"
 import { signOut } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Admin from "../layouts/Admin"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { Context } from "../Context"
 
 const Profile = () => {
   const { auth } = useContext(Context)
@@ -50,7 +46,7 @@ export default Profile
 const styles = StyleSheet.create({
   profile: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: "column"
   },
   profile__wrapper: {
     backgroundColor: "#FEFDFE",
@@ -63,7 +59,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 4
   },
-  profile__description: {
-    // color:
-  }
+  profile__description: {}
 })

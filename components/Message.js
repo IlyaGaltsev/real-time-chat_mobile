@@ -23,10 +23,10 @@ const Message = ({
     >
       {itsNoMe && (
         <Image
-          style={styles.message__avatar}
           source={{
             uri: photo
           }}
+          style={styles.message__avatar}
         />
       )}
       <View
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   message__avatar: {
     width: 30,
     height: 30,
-    borderRadius: "50%",
+    borderRadius: 100,
     marginRight: 6
   },
   message__displayName: {

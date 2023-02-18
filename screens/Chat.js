@@ -1,22 +1,24 @@
-import { useContext, useRef, useState } from "react"
+import {
+  useContext,
+  useRef,
+  useState
+} from "react"
 import {
   Text,
   View,
   TextInput,
-  Image,
   ScrollView,
   StyleSheet,
-  Button,
   KeyboardAvoidingView
 } from "react-native"
-import { Context } from "../App"
-
+import uuid from "react-native-uuid"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import Message from "../components/Message"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { FontAwesome5 } from "@expo/vector-icons"
 import firebase from "firebase/compat/app"
+import { Context } from "../Context"
 
 const Chat = () => {
   const { auth, firestore } = useContext(Context)
@@ -43,7 +45,7 @@ const Chat = () => {
       setValue("")
     }
   }
-  const scrollViewRef = useRef();
+  const scrollViewRef = useRef()
   if (loading) {
     return <Text>LOADING</Text>
   } else {
@@ -60,8 +62,12 @@ const Chat = () => {
         }}
       >
         <ScrollView
-              ref={scrollViewRef}
-              onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+          ref={scrollViewRef}
+          onContentSizeChange={() =>
+            scrollViewRef.current.scrollToEnd({
+              animated: true
+            })
+          }
           style={[
             styles.chat__wrapper,
             {
@@ -81,7 +87,7 @@ const Chat = () => {
               // console.log(messages)
               return (
                 <Message
-                  // key={uuidv4()}
+                  key={uuid.v4()}
                   meUid={user.uid}
                   {...message}
                 />

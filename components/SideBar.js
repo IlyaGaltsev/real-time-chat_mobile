@@ -1,4 +1,10 @@
 import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from "react"
+import {
   Text,
   View,
   StyleSheet,
@@ -9,11 +15,11 @@ import {
   Entypo,
   Fontisto
 } from "@expo/vector-icons"
-import { useContext } from "react"
-import { Context } from "../App"
+
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useNavigation } from "@react-navigation/native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { Context } from "../Context"
 
 export default function SideBar() {
   const { auth } = useContext(Context)
@@ -21,8 +27,15 @@ export default function SideBar() {
   const navigation = useNavigation()
   const insets = useSafeAreaInsets()
 
-  const routeName =
-    navigation.getCurrentRoute().name
+  const [routeName, setRouteName] =
+    useState("Profile")
+
+  useLayoutEffect(() => {
+    setRouteName(
+      navigation.getCurrentRoute().name
+    )
+  }, [navigation.getCurrentRoute().name])
+
   return (
     <View
       style={[
@@ -42,38 +55,38 @@ export default function SideBar() {
           }}
         />
       </TouchableOpacity>
-      <View
+      <TouchableOpacity
         style={[
           styles.sidebar__tab,
           routeName === "Chat" &&
             styles.current_tab
         ]}
+        onPress={() => {
+          navigation.navigate("Chat")
+        }}
       >
         <Entypo
           name="chat"
           size={24}
           color="#BED4FF"
-          onPress={() => {
-            navigation.navigate("Chat")
-          }}
         />
-      </View>
-      <View
+      </TouchableOpacity>
+      <TouchableOpacity
         style={[
           styles.sidebar__tab,
           routeName === "Settings" &&
             styles.current_tab
         ]}
+        onPress={() =>
+          navigation.navigate("Settings")
+        }
       >
         <Fontisto
           name="player-settings"
           size={24}
           color="#BED4FF"
-          onPress={() =>
-            navigation.navigate("Settings")
-          }
         />
-      </View>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -90,13 +103,13 @@ const styles = StyleSheet.create({
   sidebar__image: {
     width: 32,
     height: 32,
-    borderRadius: "50%",
+    borderRadius: 1000,
     borderWidth: 2,
     borderColor: "#BED4FF",
-    marginBottom: 16
+    marginBottom: 20
   },
   sidebar__tab: {
-    marginBottom: 16
+    marginBottom: 20
   },
   current_tab: {
     backgroundColor: "#4075DF",

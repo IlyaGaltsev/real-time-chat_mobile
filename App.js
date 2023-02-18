@@ -1,22 +1,9 @@
 import { StatusBar } from "expo-status-bar"
-import {
-  Button,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View
-} from "react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import { StyleSheet } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from "react"
+import { createContext } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 import firebase from "firebase/compat/app"
@@ -31,7 +18,7 @@ import Admin from "./layouts/Admin"
 import Default from "./layouts/Default"
 
 const Stack = createNativeStackNavigator()
-export const Context = createContext(null)
+import { Context } from "./Context"
 
 export default function App() {
   firebase.initializeApp(config)
@@ -55,9 +42,14 @@ export default function App() {
                 }}
               >
                 {privateRoutes.map(
-                  ({ name, Component }) => {
+                  ({
+                    name,
+                    Component,
+                    options
+                  }) => {
                     return (
                       <Stack.Screen
+                        options={options}
                         key={name}
                         name={name}
                         component={Component}

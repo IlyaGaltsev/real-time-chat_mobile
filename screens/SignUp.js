@@ -4,14 +4,10 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Button,
   TouchableOpacity
 } from "react-native"
-import { Context } from "../App"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useNavigation } from "@react-navigation/native"
+import { Context } from "../Context"
 
 const SignUp = () => {
   const [email, setEmail] = useState("")
