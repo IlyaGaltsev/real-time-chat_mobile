@@ -7,25 +7,42 @@ import SignUp from "./screens/SignUp"
 export const publicRoutes = [
   {
     name: "SignIn",
-    Component: SignIn
+    Component: SignIn,
+    options: publicRoutesOptions
   },
   {
     name: "SignUp",
-    Component: SignUp
-  },
+    Component: SignUp,
+    options: publicRoutesOptions
+  }
 ]
 
 export const privateRoutes = [
   {
     name: "Profile",
-    Component: Profile
+    Component: Profile,
+    options: privateRoutesOptions
   },
   {
     name: "Chat",
-    Component: Chat
+    Component: Chat,
+    options: privateRoutesOptions
   },
   {
     name: "Settings",
-    Component: Settings
+    Component: Settings,
+    options: privateRoutesOptions
   }
 ]
+
+const publicRoutesOptions = {
+  presentation: "card",
+  animationTypeForReplace: "pop",
+  animation: "fade_from_bottom"
+}
+
+const privateRoutesOptions = {
+  presentation: "card",
+  animationTypeForReplace: "pop",
+  animation: "fade_from_bottom"
+}

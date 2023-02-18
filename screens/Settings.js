@@ -1,33 +1,27 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import {
   Text,
   View,
-  TextInput,
-  Image,
-  StyleSheet,
-  Button
+  StyleSheet
 } from "react-native"
-import { Context } from "../App"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { signOut } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Admin from "../layouts/Admin"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 const Settings = () => {
-  const { auth } = useContext(Context)
-  const [user, loading] = useAuthState(auth)
+  // const { auth } = useContext(Context)
+  // const [user, loading] = useAuthState(auth)
 
   const insets = useSafeAreaInsets()
 
   return (
-    <View style={[styles.profile,
-      { paddingTop: insets.top, }
-    ]}>
-      <View style={styles.profile__wrapper}>
-        <Text style={styles.profile__description}>
-          Settings
-        </Text>
+    <View
+      style={[
+        styles.settings,
+        { paddingTop: insets.top }
+      ]}
+    >
+      <View style={styles.settings__wrapper}>
+        <Text>Settings</Text>
       </View>
     </View>
   )
@@ -36,25 +30,10 @@ const Settings = () => {
 export default Settings
 
 const styles = StyleSheet.create({
-  profile: {
+  settings: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "transparent",
-    // backgroundColor: "#578FFE"
+    backgroundColor: "transparent"
   },
-  profile__wrapper: {
-    backgroundColor: "#FEFDFE",
-    height: "100%",
-    
-    paddingVertical: 20,
-    paddingHorizontal: 20
-  },
-  profile__title: {
-    fontSize: 24,
-    fontWeight: "700",
-    marginBottom: 4
-  },
-  profile__description: {
-    // color:
-  }
+  settings__wrapper: {}
 })

@@ -4,14 +4,11 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Button,
   TouchableOpacity
 } from "react-native"
-import { Context } from "../App"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useNavigation } from "@react-navigation/native"
+import { Context } from "../Context"
 
 const SignIn = () => {
   const [email, setEmail] = useState(
@@ -34,7 +31,6 @@ const SignIn = () => {
         console.log("error-signin", error)
       })
   }
-  // const insets = useSafeAreaInsets()
 
   return (
     <View style={styles.container}>
