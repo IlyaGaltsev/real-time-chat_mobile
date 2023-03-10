@@ -1,17 +1,18 @@
+import * as routes from "./routesNames"
 import Chat from "./screens/Chat"
 import Profile from "./screens/Profile"
 import Settings from "./screens/Settings"
-import SignIn from "./screens/SignIn"
+import { SignIn } from "./screens/SignIn"
 import SignUp from "./screens/SignUp"
 
 export const publicRoutes = [
   {
-    name: "SignIn",
+    name: routes.SIGNIN_ROUTE,
     Component: SignIn,
     options: publicRoutesOptions
   },
   {
-    name: "SignUp",
+    name: routes.SIGNUP_ROUTE,
     Component: SignUp,
     options: publicRoutesOptions
   }

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
@@ -16,7 +16,9 @@ import {
 } from "./routes"
 import Admin from "./layouts/Admin"
 import Default from "./layouts/Default"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
+const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 import { Context } from "./Context"
 
@@ -35,30 +37,28 @@ export default function App() {
       >
         <NavigationContainer>
           {user ? (
-            <Admin>
-              <Stack.Navigator
-                screenOptions={{
-                  headerShown: false
-                }}
-              >
-                {privateRoutes.map(
-                  ({
-                    name,
-                    Component,
-                    options
-                  }) => {
-                    return (
-                      <Stack.Screen
-                        options={options}
-                        key={name}
-                        name={name}
-                        component={Component}
-                      />
-                    )
-                  }
-                )}
-              </Stack.Navigator>
-            </Admin>
+            <Tab.Navigator
+              screenOptions={{
+                headerShown: false
+              }}
+            >
+              {privateRoutes.map(
+                ({
+                  name,
+                  Component,
+                  options
+                }) => {
+                  return (
+                    <Tab.Screen
+                      options={options}
+                      key={name}
+                      name={name}
+                      component={Component}
+                    />
+                  )
+                }
+              )}
+            </Tab.Navigator>
           ) : (
             <Default>
               <Stack.Navigator
