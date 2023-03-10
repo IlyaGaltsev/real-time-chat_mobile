@@ -11,6 +11,7 @@ import { config } from "./firebase-config"
 import { privateRoutes, publicRoutes } from "./routes"
 import Default from "./layouts/Default"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { Ionicons } from "@expo/vector-icons"
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -47,9 +48,34 @@ export default function App() {
         >
           {user ? (
             <Tab.Navigator
-              screenOptions={{
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName
+
+                  if (route.name === "Profile") {
+                    iconName = focused ? "ios-information-circle" : "ios-information-circle-outline"
+                  }
+
+                  if (route.name === "Chat") {
+                    iconName = focused ? "chatbox-sharp" : "chatbox-outline"
+                  }
+
+                  if (route.name === "Settings") {
+                    iconName = focused ? "settings-sharp" : "settings-outline"
+                  }
+
+                  return (
+                    <Ionicons
+                      name={iconName}
+                      size={size}
+                      color={color}
+                    />
+                  )
+                },
+                tabBarActiveTintColor: "tomato",
+                tabBarInactiveTintColor: "gray",
                 headerShown: false
-              }}
+              })}
             >
               {privateRoutes.map(({ name, Component, options }) => {
                 return (
@@ -69,7 +95,6 @@ export default function App() {
                   headerShadowVisible: false,
                   headerTitle: "",
                   headerStyle: {
-                    // backgroundColor: colors.background
                     borderWidth: 0
                   },
                   background: "red"
