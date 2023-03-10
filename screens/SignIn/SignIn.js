@@ -4,35 +4,13 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { useNavigation } from "@react-navigation/native"
 import { Context } from "../../Context"
 import { Input } from "@rneui/themed"
-import { FontAwesome5 } from "@expo/vector-icons"
-import { Entypo } from "@expo/vector-icons"
+
 import * as React from "react"
 import { useForm, Controller } from "react-hook-form"
 import * as S from "./SignIn.styled"
 import { SIGNUP_ROUTE } from "../../routesNames"
 import { View } from "react-native-ui-lib"
-
-export const signInFileds = [
-  {
-    name: "email",
-    placeholder: "enter your email",
-    options: {
-      required: "This is required",
-      pattern: {
-        value: /\S+@\S+\.\S+/,
-        message: "Entered value does not match email format"
-      }
-    }
-  },
-  {
-    name: "password",
-    placeholder: "enter your password",
-    type: "password",
-    options: {
-      required: "This is required"
-    }
-  }
-]
+import { signInFileds } from "../../utils/textFileds"
 
 const SignIn = () => {
   const { auth } = useContext(Context)
@@ -78,68 +56,36 @@ const SignIn = () => {
       <View>
         <S.Title>Sign In</S.Title>
         <S.SubTitle>Sign in your account</S.SubTitle>
-        <S.TextFiled>
-          <Controller
-            control={control}
-            name="email"
-            rules={{
-              required: "This is required",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "Entered value does not match email format"
-              }
-            }}
-            render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-              <Input
-                placeholder="Enter your email"
-                value={value}
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-                errorMessage={error && error.message}
-                leftIcon={
-                  <Entypo
-                    name="email"
-                    size={24}
-                    color="black"
-                    style={{ marginRight: 10 }}
+        {signInFileds.map(({ name, placeholder, secureTextEntry, options, icon }) => {
+          return (
+            <S.TextFiled key={name}>
+              <Controller
+                control={control}
+                name={name}
+                rules={options}
+                render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+                  <Input
+                    placeholder={placeholder}
+                    value={value}
+                    onBlur={onBlur}
+                    secureTextEntry={secureTextEntry}
+                    style={error && { color: "red" }}
+                    onChangeText={value => onChange(value)}
+                    errorMessage={error && error.message}
+                    leftIcon={() => icon(error)}
                   />
-                }
+                )}
               />
-            )}
-          />
-        </S.TextFiled>
-        <S.TextFiled>
-          <Controller
-            control={control}
-            name="password"
-            rules={{ required: "This is required" }}
-            render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-              <Input
-                placeholder="Enter your password"
-                value={value}
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-                secureTextEntry={true}
-                errorMessage={error && error.message}
-                leftIcon={
-                  <FontAwesome5
-                    name="star-of-life"
-                    size={24}
-                    color="black"
-                    style={{ marginRight: 10 }}
-                  />
-                }
-              />
-            )}
-          />
-        </S.TextFiled>
+            </S.TextFiled>
+          )
+        })}
         <S.PrimaryButton
           color
           title="Sign in"
           onPress={handleSubmit(authUser)}
         />
       </View>
-      <Text style={{alignSelf: "center"}}>
+      <Text style={{ alignSelf: "center" }}>
         Don't have account?
         <S.NavLink
           onPress={() => {

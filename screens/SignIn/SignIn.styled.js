@@ -1,6 +1,5 @@
 import { Button } from "@rneui/base"
 import { Text } from "@rneui/themed"
-import { TouchableOpacity } from "react-native"
 import { View } from "react-native-ui-lib"
 import styled from "styled-components"
 import { colors } from "../../styled/colors"
@@ -29,6 +28,7 @@ export const ErrorMessage = styled(Text)(() => ({
 
 export const PrimaryButton = styled(Button)(() => ({
   background: colors.primary,
+  marginTop: 4,
   marginBottom: 20,
   paddingTop: 4,
   paddingBottom: 4,
@@ -40,5 +40,6 @@ export const NavLink = styled(Text)(() => ({
 }))
 
 export const TextFiled = styled(View)(() => ({
-  marginBottom: 20
+  marginBottom: 4,
+  color: 'red'
 }))

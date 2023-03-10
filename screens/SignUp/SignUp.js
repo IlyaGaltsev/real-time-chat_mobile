@@ -1,86 +1,121 @@
-import { useContext, useState } from "react"
-import { Text, View, TextInput, StyleSheet, TouchableOpacity } from "react-native"
+import { useContext } from "react"
+import { Text } from "react-native"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { useNavigation } from "@react-navigation/native"
 import { Context } from "../../Context"
+import { Input } from "@rneui/themed"
+import { FontAwesome5 } from "@expo/vector-icons"
+import { Entypo } from "@expo/vector-icons"
+import * as React from "react"
+import { useForm, Controller } from "react-hook-form"
+import * as S from "./SignUp.styled"
+import { SIGNIN_ROUTE } from "../../routesNames"
+import { View } from "react-native-ui-lib"
+import { Ionicons } from "@expo/vector-icons"
+import { signUpFileds } from "../../utils/textFileds"
+
+export const signInFileds = [
+  {
+    name: "email",
+    placeholder: "enter your email",
+    options: {
+      required: "This is required",
+      pattern: {
+        value: /\S+@\S+\.\S+/,
+        message: "Entered value does not match email format"
+      }
+    }
+  },
+  {
+    name: "password",
+    placeholder: "enter your password",
+    type: "password",
+    options: {
+      required: "This is required"
+    }
+  }
+]
 
 const SignUp = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
   const { auth } = useContext(Context)
   const navigation = useNavigation()
 
-  const handleonclick = () => {}
+  const {
+    handleSubmit,
+    setError,
+    control,
+    reset,
+    formState: { errors }
+  } = useForm()
+
+  const authUser = data => {
+    console.log(data)
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: data.displayName,
+          photoURL: "https://cdn-icons-png.flaticon.com/512/2948/2948035.png"
+        })
+      })
+      .catch(err => {
+        let jsonError = JSON.stringify(err)
+        const code = JSON.parse(jsonError).code
+
+        if (code.includes("email-already-in-use")) {
+          setError("email", {
+            message: "Email already in use"
+          })
+        }
+      })
+  }
 
   return (
-    <View style={styles.container}>
-      <Text>Create account</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={text => setEmail(text)}
-        value={email}
-        placeholder="email"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={text => setPassword(text)}
-        value={password}
-        placeholder="password"
-        secureTextEntry={true}
-      />
-      <TouchableOpacity
-        style={styles.submit__button}
-        onPress={handleonclick}
-      >
-        <Text style={styles.submit__button__text}>Create account</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.link}
-        onPress={() => navigation.navigate("SignIn")}
-      >
-        <Text style={styles.link__text}>Sign up</Text>
-      </TouchableOpacity>
-    </View>
+    <S.Container>
+      <View>
+        <S.Title>Sign Up</S.Title>
+        <S.SubTitle>Create your account</S.SubTitle>
+        {signUpFileds.map(({ name, placeholder, secureTextEntry, options, icon }) => {
+          return (
+            <S.TextFiled key={name}>
+              <Controller
+                control={control}
+                name={name}
+                rules={options}
+                render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+                  <Input
+                    placeholder={placeholder}
+                    value={value}
+                    onBlur={onBlur}
+                    secureTextEntry={secureTextEntry}
+                    style={error && { color: "red" }}
+                    onChangeText={value => onChange(value)}
+                    errorMessage={error && error.message}
+                    leftIcon={() => icon(error)}
+                  />
+                )}
+              />
+            </S.TextFiled>
+          )
+        })}
+        <S.PrimaryButton
+          color
+          title="Create account"
+          onPress={handleSubmit(authUser)}
+        />
+      </View>
+      <Text style={{ alignSelf: "center" }}>
+        Do you have an account?
+        <S.NavLink
+          onPress={() => {
+            navigation.navigate(SIGNIN_ROUTE)
+          }}
+        >
+          {" "}
+          Sign in
+        </S.NavLink>
+      </Text>
+    </S.Container>
   )
 }
 
 export { SignUp }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 16,
-    backgroundColor: "white"
-  },
-  submit__button: {
-    backgroundColor: "#578FFE",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 10,
-    marginBottom: 20
-  },
-  submit__button__text: {
-    color: "white",
-    fontWeight: "700"
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    borderColor: "#578FFE",
-    borderRadius: 10,
-    padding: 10,
-    color: "#5C5C5C",
-    width: "100%"
-  },
-  link: {},
-  link__text: {
-    color: "#578FFE"
-  }
-})
