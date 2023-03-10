@@ -1,33 +1,19 @@
-import {
-  useContext,
-  useRef,
-  useState
-} from "react"
-import {
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  StyleSheet,
-  KeyboardAvoidingView
-} from "react-native"
+import { useContext, useRef, useState } from "react"
+import { Text, View, TextInput, ScrollView, StyleSheet, KeyboardAvoidingView } from "react-native"
 import uuid from "react-native-uuid"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useCollectionData } from "react-firebase-hooks/firestore"
-import Message from "../components/Message"
+import Message from "../../components/Message"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { FontAwesome5 } from "@expo/vector-icons"
 import firebase from "firebase/compat/app"
-import { Context } from "../Context"
+import { Context } from "../../Context"
+import * as S from "./Chat.styled"
 
 const Chat = () => {
   const { auth, firestore } = useContext(Context)
   const [user] = useAuthState(auth)
-  const [messages, loading] = useCollectionData(
-    firestore
-      .collection("messages")
-      .orderBy("created")
-  )
+  const [messages, loading] = useCollectionData(firestore.collection("messages").orderBy("created"))
   const insets = useSafeAreaInsets()
 
   const [value, setValue] = useState("")
@@ -39,8 +25,7 @@ const Chat = () => {
         displayName: user.displayName,
         photoUrl: user.photoURL,
         text: value,
-        created:
-          firebase.firestore.FieldValue.serverTimestamp()
+        created: firebase.firestore.FieldValue.serverTimestamp()
       })
       setValue("")
     }
@@ -51,11 +36,7 @@ const Chat = () => {
   } else {
     return (
       <KeyboardAvoidingView
-        behavior={
-          Platform.OS === "ios"
-            ? "padding"
-            : "height"
-        }
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{
           flex: 1,
           flexDirection: "column"
@@ -121,7 +102,7 @@ const Chat = () => {
   }
 }
 
-export default Chat
+export { Chat }
 
 const styles = StyleSheet.create({
   chat__wrapper: {

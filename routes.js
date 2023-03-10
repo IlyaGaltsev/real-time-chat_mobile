@@ -1,9 +1,9 @@
 import * as routes from "./routesNames"
-import Chat from "./screens/Chat"
-import Profile from "./screens/Profile"
-import Settings from "./screens/Settings"
+import { Chat } from "./screens/Chat"
+import { Profile } from "./screens/Profile"
+import {Settings} from "./screens/Settings"
 import { SignIn } from "./screens/SignIn"
-import {SignUp} from "./screens/SignUp"
+import { SignUp } from "./screens/SignUp"
 
 export const publicRoutes = [
   {
@@ -20,17 +20,17 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   {
-    name: "Profile",
+    name: routes.PROFILE_ROUTE,
     Component: Profile,
     options: privateRoutesOptions
   },
   {
-    name: "Chat",
+    name: routes.CHAT_ROUTE,
     Component: Chat,
     options: privateRoutesOptions
   },
   {
-    name: "Settings",
+    name: routes.SETTINGS_ROUTE,
     Component: Settings,
     options: privateRoutesOptions
   }
