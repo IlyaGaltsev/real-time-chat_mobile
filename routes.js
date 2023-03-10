@@ -3,7 +3,7 @@ import Chat from "./screens/Chat"
 import Profile from "./screens/Profile"
 import Settings from "./screens/Settings"
 import { SignIn } from "./screens/SignIn"
-import SignUp from "./screens/SignUp"
+import {SignUp} from "./screens/SignUp"
 
 export const publicRoutes = [
   {

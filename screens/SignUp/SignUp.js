@@ -1,13 +1,7 @@
 import { useContext, useState } from "react"
-import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity
-} from "react-native"
+import { Text, View, TextInput, StyleSheet, TouchableOpacity } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import { Context } from "../Context"
+import { Context } from "../../Context"
 
 const SignUp = () => {
   const [email, setEmail] = useState("")
@@ -38,25 +32,19 @@ const SignUp = () => {
         style={styles.submit__button}
         onPress={handleonclick}
       >
-        <Text style={styles.submit__button__text}>
-          Create account
-        </Text>
+        <Text style={styles.submit__button__text}>Create account</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.link}
-        onPress={() =>
-          navigation.navigate("SignIn")
-        }
+        onPress={() => navigation.navigate("SignIn")}
       >
-        <Text style={styles.link__text}>
-          Sign up
-        </Text>
+        <Text style={styles.link__text}>Sign up</Text>
       </TouchableOpacity>
     </View>
   )
 }
 
-export default SignUp
+export { SignUp }
 
 const styles = StyleSheet.create({
   container: {
