@@ -1,11 +1,8 @@
 import { useContext } from "react"
-import {
-  Text,
-  View,
-  StyleSheet
-} from "react-native"
+import { Text, View, StyleSheet } from "react-native"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import * as S from "./Settings.styled"
 
 const Settings = () => {
   // const { auth } = useContext(Context)
@@ -14,12 +11,7 @@ const Settings = () => {
   const insets = useSafeAreaInsets()
 
   return (
-    <View
-      style={[
-        styles.settings,
-        { paddingTop: insets.top }
-      ]}
-    >
+    <View style={[styles.settings, { paddingTop: insets.top }]}>
       <View style={styles.settings__wrapper}>
         <Text>Settings</Text>
       </View>
@@ -27,7 +19,7 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export { Settings }
 
 const styles = StyleSheet.create({
   settings: {
