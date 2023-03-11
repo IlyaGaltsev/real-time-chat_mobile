@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { useNavigation } from "@react-navigation/native"
 import { Context } from "../../Context"
 import { Input } from "@rneui/themed"
-
 import * as React from "react"
 import { useForm, Controller } from "react-hook-form"
 import * as S from "./SignIn.styled"
