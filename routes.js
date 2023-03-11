@@ -1,7 +1,9 @@
+import { Ionicons } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
 import * as routes from "./routesNames"
 import { Chat } from "./screens/Chat"
 import { Profile } from "./screens/Profile"
-import {Settings} from "./screens/Settings"
+import { Settings } from "./screens/Settings"
 import { SignIn } from "./screens/SignIn"
 import { SignUp } from "./screens/SignUp"
 
@@ -27,7 +29,26 @@ export const privateRoutes = [
   {
     name: routes.CHAT_ROUTE,
     Component: Chat,
-    options: privateRoutesOptions
+    options: {
+      presentation: "card",
+      animationTypeForReplace: "pop",
+      animation: "fade_from_bottom",
+      headerShown: true,
+      headerTitle: "Public chat",
+      tabBarStyle: {
+        display: "none"
+      },
+      // headerLeft: () => (
+      //   <Ionicons
+      //     name="chevron-back"
+      //     onPress={() => {
+      //       navigation.navigate(routes.PROFILE_ROUTE)
+      //     }}
+      //     size={36}
+      //     color="black"
+      //   />
+      // )
+    }
   },
   {
     name: routes.SETTINGS_ROUTE,
