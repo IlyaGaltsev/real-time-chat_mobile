@@ -75,16 +75,28 @@ export default function App() {
                   let iconName
 
                   if (route.name === routes.PROFILE_ROUTE) {
-                    iconName = focused ? "ios-information-circle" : "ios-information-circle-outline"
+                    iconName = focused ? "home" : "home-outline"
                   }
 
                   if (route.name === routes.CHAT_ROUTE) {
-                    iconName = focused ? "chatbox-sharp" : "chatbox-outline"
+                    iconName = focused ? "chatbubbles" : "chatbubbles-outline"
+                  }
+                  if (route.name === routes.SETTINGS_ROUTE) {
+                    iconName = focused ? "options" : "options-sharp"
                   }
 
-                  if (route.name === routes.SETTINGS_ROUTE) {
-                    iconName = focused ? "settings-sharp" : "settings-outline"
+                  if (route.name === routes.FRIENDS_ROUTE) {
+                    iconName = focused ? "duplicate" : "duplicate-outline"
                   }
+
+                  if (route.name === routes.NEWPAGE_ROUTE) {
+                    iconName = focused ? "compass" : "compass-outline"
+                  }
+                  ;<Ionicons
+                    name=""
+                    size={24}
+                    color="black"
+                  />
 
                   return (
                     <Ionicons

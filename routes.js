@@ -2,6 +2,8 @@ import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import * as routes from "./routesNames"
 import { Chat } from "./screens/Chat"
+import { Friends } from "./screens/Friends"
+import { NewPage } from "./screens/NewPage"
 import { Profile } from "./screens/Profile"
 import { Settings } from "./screens/Settings"
 import { SignIn } from "./screens/SignIn"
@@ -38,17 +40,17 @@ export const privateRoutes = [
       tabBarStyle: {
         display: "none"
       },
-      // headerLeft: () => (
-      //   <Ionicons
-      //     name="chevron-back"
-      //     onPress={() => {
-      //       navigation.navigate(routes.PROFILE_ROUTE)
-      //     }}
-      //     size={36}
-      //     color="black"
-      //   />
-      // )
     }
+  },
+  {
+    name: routes.FRIENDS_ROUTE,
+    Component: Friends,
+    options: privateRoutesOptions
+  },
+  {
+    name: routes.NEWPAGE_ROUTE,
+    Component: NewPage,
+    options: privateRoutesOptions
   },
   {
     name: routes.SETTINGS_ROUTE,
