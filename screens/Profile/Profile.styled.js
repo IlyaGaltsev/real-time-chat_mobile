@@ -23,12 +23,4 @@ export const AvatarImg = styled(Avatar)(({}) => ({
   height: 64
 }))
 
-export const Title = styled(Text)(({}) => ({
-  fontSize: 20,
-  fontWeight: "600",
-  marginBottom: 4
-}))
 
-export const Subtitle = styled(Text)(({}) => ({
-  color: "gray"
-}))
