@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from "react"
-import { Text, View, StyleSheet, Button } from "react-native"
-import { signOut } from "firebase/auth"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Context } from "../../Context"
-import { Avatar } from "@rneui/themed"
-import * as S from "./Profile.styled"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useAuthState } from "react-firebase-hooks/auth"
 import { SimpleLineIcons } from "@expo/vector-icons"
+import * as C from "../../styled/PartsComponents.styled"
+import { signOut } from "firebase/auth"
+import { Context } from "../../Context"
+import * as S from "./Profile.styled"
+import { View } from "react-native"
+import { useContext } from "react"
 
 const Profile = () => {
   const { auth } = useContext(Context)
@@ -36,8 +35,8 @@ const Profile = () => {
             }}
           />
           <View>
-            <S.Title>Hi {user.displayName}</S.Title>
-            <S.Subtitle>{user.email}</S.Subtitle>
+            <C.Title style={{ marginBottom: 4 }}>Hi {user.displayName}</C.Title>
+            <C.Subtitle>{user.email}</C.Subtitle>
           </View>
         </View>
         <SimpleLineIcons
