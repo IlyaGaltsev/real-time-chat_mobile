@@ -11,12 +11,16 @@ export const Container = styled(View)(() => ({
 }))
 
 export const Title = styled(Text)(() => ({
+  margin: 0,
+  padding: 0,
   fontSize: 32,
   color: "black",
   paddingBottom: 6
 }))
 
 export const SubTitle = styled(Text)(() => ({
+  margin: 0,
+  padding: 0,
   fontSize: 16,
   color: "gray",
   paddingBottom: 20
@@ -27,7 +31,6 @@ export const ErrorMessage = styled(Text)(() => ({
 }))
 
 export const PrimaryButton = styled(Button)(() => ({
-  background: colors.primary,
   marginTop: 4,
   marginBottom: 20,
   paddingTop: 4,

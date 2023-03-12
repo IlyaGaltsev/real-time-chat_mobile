@@ -10,6 +10,7 @@ import * as S from "./SignIn.styled"
 import { SIGNUP_ROUTE } from "../../routesNames"
 import { View } from "react-native-ui-lib"
 import { signInFileds } from "../../utils/textFileds"
+import { colors } from "../../styled/colors"
 
 const SignIn = () => {
   const { auth } = useContext(Context)
@@ -79,7 +80,7 @@ const SignIn = () => {
           )
         })}
         <S.PrimaryButton
-          color
+          color={colors.primary}
           title="Sign in"
           onPress={handleSubmit(authUser)}
         />

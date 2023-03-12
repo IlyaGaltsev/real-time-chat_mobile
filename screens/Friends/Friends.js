@@ -117,7 +117,7 @@ const Friends = () => {
         </TabView.Item>
         <TabView.Item style={{ width: "100%" }}>
           <ScrollView>
-       
+
           </ScrollView>
         </TabView.Item>
         <TabView.Item style={{ backgroundColor: "green", width: "100%" }}>

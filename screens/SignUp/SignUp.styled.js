@@ -7,16 +7,21 @@ import { colors } from "../../styled/colors"
 export const Container = styled(View)(() => ({
   flex: 1,
   padding: 20,
+  paddingTop: 0,
   justifyContent: "space-between"
 }))
 
 export const Title = styled(Text)(() => ({
+  margin: 0,
+  padding: 0,
   fontSize: 32,
   color: "black",
   paddingBottom: 6
 }))
 
 export const SubTitle = styled(Text)(() => ({
+  margin: 0,
+  padding: 0,
   fontSize: 16,
   color: "gray",
   paddingBottom: 20
@@ -32,6 +37,7 @@ export const PrimaryButton = styled(Button)(() => ({
   marginBottom: 20,
   paddingTop: 4,
   paddingBottom: 4,
+  overflow: "hidden",
   borderRadius: 10
 }))
 

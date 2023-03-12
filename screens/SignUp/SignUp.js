@@ -10,6 +10,7 @@ import * as S from "./SignUp.styled"
 import { SIGNIN_ROUTE } from "../../routesNames"
 import { View } from "react-native-ui-lib"
 import { signUpFileds } from "../../utils/textFileds"
+import { colors } from "../../styled/colors"
 
 const SignUp = () => {
   const { auth } = useContext(Context)
@@ -72,7 +73,8 @@ const SignUp = () => {
           )
         })}
         <S.PrimaryButton
-          color
+        radius={10}
+          color={colors.primary}
           title="Create account"
           onPress={handleSubmit(authUser)}
         />
