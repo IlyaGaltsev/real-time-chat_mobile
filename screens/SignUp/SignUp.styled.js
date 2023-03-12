@@ -33,8 +33,6 @@ export const ErrorMessage = styled(Text)(() => ({
 
 export const PrimaryButton = styled(Button)(() => ({
   background: colors.primary,
-  marginTop: 4,
-  marginBottom: 20,
   paddingTop: 4,
   paddingBottom: 4,
   overflow: "hidden",
