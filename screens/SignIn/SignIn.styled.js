@@ -31,10 +31,10 @@ export const ErrorMessage = styled(Text)(() => ({
 }))
 
 export const PrimaryButton = styled(Button)(() => ({
-  marginTop: 4,
-  marginBottom: 20,
+  background: colors.primary,
   paddingTop: 4,
   paddingBottom: 4,
+  overflow: "hidden",
   borderRadius: 10
 }))
 

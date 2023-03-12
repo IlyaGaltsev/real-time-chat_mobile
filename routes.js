@@ -5,11 +5,17 @@ import { Chat } from "./screens/Chat"
 import { Friends } from "./screens/Friends"
 import { NewPage } from "./screens/NewPage"
 import { Profile } from "./screens/Profile"
+import { Promo } from "./screens/Promo"
 import { Settings } from "./screens/Settings"
 import { SignIn } from "./screens/SignIn"
 import { SignUp } from "./screens/SignUp"
 
 export const publicRoutes = [
+  {
+    name: routes.PROMO_ROUTE,
+    Component: Promo,
+    options: publicRoutesOptions
+  },
   {
     name: routes.SIGNIN_ROUTE,
     Component: SignIn,

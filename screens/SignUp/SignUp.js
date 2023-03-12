@@ -11,6 +11,7 @@ import { SIGNIN_ROUTE } from "../../routesNames"
 import { View } from "react-native-ui-lib"
 import { signUpFileds } from "../../utils/textFileds"
 import { colors } from "../../styled/colors"
+import * as P from "../../styled/PublicComponent.stylde"
 
 const SignUp = () => {
   const { auth } = useContext(Context)
@@ -72,9 +73,10 @@ const SignUp = () => {
             </S.TextFiled>
           )
         })}
-        <S.PrimaryButton
-        radius={10}
+        <P.AppButton
+          radius={10}
           color={colors.primary}
+          style={{ marginTop: 4, marginBottom: 20 }}
           title="Create account"
           onPress={handleSubmit(authUser)}
         />

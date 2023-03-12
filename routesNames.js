@@ -1,3 +1,4 @@
+export const PROMO_ROUTE = "promo"
 export const SIGNIN_ROUTE = "signin"
 export const SIGNUP_ROUTE = "signup"
 

@@ -11,6 +11,7 @@ import { SIGNUP_ROUTE } from "../../routesNames"
 import { View } from "react-native-ui-lib"
 import { signInFileds } from "../../utils/textFileds"
 import { colors } from "../../styled/colors"
+import * as P from "../../styled/PublicComponent.stylde"
 
 const SignIn = () => {
   const { auth } = useContext(Context)
@@ -52,7 +53,7 @@ const SignIn = () => {
   }
 
   return (
-    <S.Container>
+    <P.Container>
       <View>
         <S.Title>Sign In</S.Title>
         <S.SubTitle>Sign in your account</S.SubTitle>
@@ -79,8 +80,10 @@ const SignIn = () => {
             </S.TextFiled>
           )
         })}
-        <S.PrimaryButton
+        <P.AppButton
+          radius={10}
           color={colors.primary}
+          style={{ marginTop: 4, marginBottom: 20 }}
           title="Sign in"
           onPress={handleSubmit(authUser)}
         />
@@ -96,7 +99,7 @@ const SignIn = () => {
           Create account
         </S.NavLink>
       </Text>
-    </S.Container>
+    </P.Container>
   )
 }
 
